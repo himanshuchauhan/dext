@@ -73,7 +73,6 @@ ResultItemContainer.propTypes = {
 };
 
 const mapStateToProps = ({ keys, copiedToClipboard }) => ({
-  keys,
   copiedToClipboard,
 });
 

@@ -36,11 +36,12 @@ const shown = style({
 const ResultList = class extends Component {
   render() {
     // Retrieve an array of <ResultItemContainer /> containers
-    const getResultItems = (results, selectedIndex, theme) =>
+    const getResultItems = (results, selectedIndex, theme, keys) =>
       results.map((item, key) => (
         <ResultItemContainer
           key={key}
           theme={theme}
+          keys={keys}
           item={item}
           selected={selectedIndex === key}
         />
@@ -60,7 +61,8 @@ const ResultList = class extends Component {
           {getResultItems(
             this.props.results,
             this.props.selectedIndex,
-            this.props.theme
+            this.props.theme,
+            this.props.keys
           )}
         </ol>
         {currItem && (
@@ -73,12 +75,14 @@ const ResultList = class extends Component {
 
 ResultList.defaultProps = {
   theme: {},
+  keys: [],
   results: [],
   selectedIndex: 0,
 };
 
 ResultList.propTypes = {
   theme: ThemeSchema,
+  keys: PropTypes.arrayOf(PropTypes.string),
   results: PropTypes.arrayOf(ResultItemSchema),
   selectedIndex: PropTypes.number,
 };
